@@ -11,6 +11,7 @@ import frgp.utn.edu.ar.dao.ConfigHibernate;
 
 public class daoHibernate {
 	
+	/*==================== Autor =========================*/
 	public static void AgregarAutor(Autor autor) {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
@@ -21,6 +22,47 @@ public class daoHibernate {
 		ch.cerrarSession();
 	}
 
+	public static Autor LeerAutorPos(int id)
+	{
+		ConfigHibernate config = new ConfigHibernate();
+		Session session= config.abrirConexion();
+		
+		session.beginTransaction();
+		Autor autor=(Autor)session.get(Autor.class,id);
+        
+        config.cerrarSession();
+        
+        return autor;
+	}
+	
+	public static void ModificarAutor(Autor autor)
+	{
+		ConfigHibernate config = new ConfigHibernate();
+		Session session= config.abrirConexion();
+		
+        session.beginTransaction();
+        session.update(autor);
+        session.getTransaction().commit();        
+        
+        config.cerrarSession();
+	}
+	
+	public static void EliminarAutor(Autor autor) //Este usuario tiene que venir cargado el ID del usuario que se quiere eliminar
+	{	
+		ConfigHibernate config = new ConfigHibernate();
+		Session session= config.abrirConexion();
+		
+        session.beginTransaction();
+        session.delete(autor);
+        session.getTransaction().commit();        
+        
+        config.cerrarSession();
+
+	}
+	/*==================== Fin Autor =========================*/
+	
+	/*==================== Nacionalidad ======================*/
+	
 	public static void AgregarNacionalidad(Nacionalidad nacion) {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
@@ -30,7 +72,45 @@ public class daoHibernate {
 		session.getTransaction().commit();
 		ch.cerrarSession();
 	}
+	
+	public static Nacionalidad LeerNacionPos(int id)
+	{
+		ConfigHibernate config = new ConfigHibernate();
+		Session session= config.abrirConexion();
+		
+		session.beginTransaction();
+		Nacionalidad nacion=(Nacionalidad)session.get(Nacionalidad.class,id);
+        
+        config.cerrarSession();
+        
+        return nacion;
+	}
+	
+	public static void ModificarNacion(Nacionalidad nacion)
+	{
+		ConfigHibernate config = new ConfigHibernate();
+		Session session= config.abrirConexion();
+		
+        session.beginTransaction();
+        session.update(nacion);
+        session.getTransaction().commit();        
+        
+        config.cerrarSession();
+	}
+	
+	public static void EliminarNacion(Nacionalidad nacion) //Este usuario tiene que venir cargado el ID del usuario que se quiere eliminar
+	{	
+		ConfigHibernate config = new ConfigHibernate();
+		Session session= config.abrirConexion();
+		
+        session.beginTransaction();
+        session.delete(nacion);
+        session.getTransaction().commit();        
+        
+        config.cerrarSession();
 
+	}
+	/*==================== Fin Nacionalidad ======================*/
 	//Genero----------------------------------
 	public static void AgregarGenero(Genero Gen)
 	{
